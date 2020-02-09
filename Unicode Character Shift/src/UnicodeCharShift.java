@@ -7,7 +7,7 @@
  * @author Neil Woodhouse
  * @Version 1.0
  */
-public class UniCharShift {
+public class UnicodeCharShift {
 
     /**
      * This function does a simple character shift cipher on the input text and returns the resultant string
@@ -16,14 +16,13 @@ public class UniCharShift {
      * @return The encrypted string
      */
     public static String CharacterShiftEncrypt(String inputString, int shiftDistance) {
-        String outputString = "";
+        StringBuilder outputString = new StringBuilder();
         char[] inputText = inputString.toCharArray();
         for (char character : inputText) {
-            int unicodeValue = character;
-            char shiftedChar = (char)(unicodeValue + shiftDistance);
-            outputString+=shiftedChar;
+            char shiftedChar = (char)((int) character + shiftDistance);
+            outputString.append(shiftedChar);
         }
-        return outputString;
+        return outputString.toString();
     }
 
     /**
@@ -33,14 +32,13 @@ public class UniCharShift {
      * @return The encrypted string
      */
     public static String CharacterShiftDecrypt(String inputString, int shiftDistance) {
-        String outputString = "";
+        StringBuilder outputString = new StringBuilder();
         char[] inputText = inputString.toCharArray();
         for (char character : inputText) {
-            int unicodeValue = character;
-            char shiftedChar = (char)(unicodeValue - shiftDistance);
-            outputString+=shiftedChar;
+            char shiftedChar = (char)((int) character - shiftDistance);
+            outputString.append(shiftedChar);
         }
-        return outputString;
+        return outputString.toString();
     }
 
 
@@ -53,14 +51,14 @@ public class UniCharShift {
      * @return The encrypted string
      */
     public static String CharacterShiftEncryptAndReverse(String inputString, int shiftDistance) {
-        String outputString = "";
+        StringBuilder outputString = new StringBuilder();
         char[] inputText = inputString.toCharArray();
         for (int i = inputText.length-1; i>=0; i--) {
             int unicodeValue = inputText[i];
             char shiftedChar = (char)(unicodeValue + shiftDistance);
-            outputString+=shiftedChar;
+            outputString.append(shiftedChar);
         }
-        return outputString;
+        return outputString.toString();
     }
 
     /**
@@ -71,15 +69,46 @@ public class UniCharShift {
      * @return The encrypted string
      */
     public static String CharacterShiftDecryptAndReverse(String inputString, int shiftDistance) {
-        String outputString = "";
+        StringBuilder outputString = new StringBuilder();
         char[] inputText = inputString.toCharArray();
         for (int i = inputText.length-1; i>0; i--) {
             int unicodeValue = inputText[i];
             char shiftedChar = (char)(unicodeValue - shiftDistance);
-            outputString+=shiftedChar;
+            outputString.append(shiftedChar);
         }
-        return outputString;
+        return outputString.toString();
     }
+
+
+    /**
+     * This function does a simple character shift cipher on the input string, removing any non-alphabetic characters
+     * @param inputString The text string to be encrypted
+     * @param shiftDistance The size of the character shift required (+ or -)
+     * @return The encrypted string
+     */
+    public static String CharacterShiftEncryptAlpha(String inputString, int shiftDistance) {
+        StringBuilder outputString = new StringBuilder();
+        char[] inputText = inputString.toCharArray();
+        for (char character : inputText) {
+            if (Character.isAlphabetic(character)) {
+                char shiftedChar = (char)((int) character + shiftDistance);
+                outputString.append(shiftedChar);
+            }
+        }
+        return outputString.toString();
+    }
+
+
+    /**
+     * This function reverses a simple character shift cipher applied to an alphabetic string
+     * @param inputString The text string to be decrypted
+     * @param shiftDistance The size of the character shift used
+     * @return The encrypted string
+     */
+    public static String CharacterShiftDecryptAlpha(String inputString, int shiftDistance) {
+        return CharacterShiftDecrypt(inputString, shiftDistance);
+    }
+
 
 
 }
