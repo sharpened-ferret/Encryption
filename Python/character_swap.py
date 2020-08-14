@@ -1,4 +1,4 @@
-# Ciphers text with char swap dictionary
+# Ciphers text with char swap dictionary - replaces special chars with SPACE, loses case
 def dict_char_swap_crypt(plaintext_string):
     output = ""
     swap_dict = {"a": "c", "b": "z", "c": "u", "d": "d", "e": "a", "f": "l", "g": "s", "h": "m", "i": "k", "j": "w", "k": "n", "l": "y", "m": "x", "n": "b", "o": "o", "p": "e", "q": "j", "r": "g", "s": "f", "t": "h", "u": "v", "v": "i", "w": "p", "z": "t", "x": "q", "y": "r"}
@@ -10,7 +10,7 @@ def dict_char_swap_crypt(plaintext_string):
     
     return output
 
-# Deciphers text with reversed dictionary
+# Deciphers text with reversed dictionary - replaces special chars with SPACE, loses case
 def dict_char_swap_decrypt(ciphered_string):
     output = ""
     decipher_dict = {'c': 'a', 'z': 'b', 'u': 'c', 'd': 'd', 'a': 'e', 'l': 'f', 's': 'g', 'm': 'h', 'k': 'i', 'w': 'j', 'n': 'k', 'y': 'l', 'x': 'm', 'b': 'n', 'o': 'o', 'e': 'p', 'j': 'q', 'g': 'r', 'f': 's', 'h': 't', 'v': 'u', 'i': 'v', 'p': 'w', 't': 'z', 'q': 'x', 'r': 'y'}
